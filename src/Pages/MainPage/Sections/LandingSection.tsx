@@ -37,8 +37,8 @@ export const Landing = () => {
       >
         <div className="name sm:text-3xl flex items-center justify-center gap-4">
           <h1
-            style={{ fontFamily: "CustomFont, sans-serif" }}
-            className="font-bold bg-gradient-to-bl dark:from-violet-500 dark:to-fuchsia-500 from-yellow-950 to-orange-950 main-name bg-clip-text text-transparent"
+            style={{ fontFamily: "roboto, sans-serif" }}
+            className="font-extrabold bg-gradient-to-bl dark:from-violet-500 dark:to-fuchsia-500 from-yellow-950 to-orange-950 main-name bg-clip-text text-transparent"
           >
             ABIJITH M A
           </h1>
@@ -55,7 +55,6 @@ export const Landing = () => {
           </h2>
         </div>
       </div>
-      <div className=" hidden lg:flex !w-1/2 h-full"></div>
     </div>
   );
 };
