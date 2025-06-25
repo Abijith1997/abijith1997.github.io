@@ -43,6 +43,24 @@ export const Projects = () => {
       image: "SVG/Berlin.png",
       link: "https://www.kaggle.com/code/abijithasokan/berlin-weather-visualization-and-prediction-model",
     },
+    {
+      id: 4,
+      title: "Habit Tracker Web App",
+      description:
+        "A full-stack Habit Tracker application that helps users build and maintain daily routines. Built with React, TypeScript, Tailwind CSS, and Supabase for backend services including authentication and real-time database. Features include habit creation, daily logging, and progress visualization through a clean, responsive UI.",
+      tags: [
+        "React",
+        "TypeScript",
+        "Tailwind CSS",
+        "Supabase",
+        "Authentication",
+        "Full-Stack",
+        "Web App",
+        "Habit Tracker",
+      ],
+      image: "SVG/habit_tracker.png",
+      link: "https://abijith1997.github.io/HabitTracker", // Replace with your actual project link if different
+    },
   ];
   return (
     <div className="projects-pagefull items-center justify-center dark:text-white text-gray-800 gap-2 about-pagefull rounded-b-md bg-[var(--background)] dark:bg-gray-950 shadow-md z-20 relative sm:p-14 flex flex-col md:w-[90%] w-full">
