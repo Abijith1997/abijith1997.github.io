@@ -1,11 +1,45 @@
 import "./Navbar.css";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Box, Button, Divider, Drawer } from "@mui/material";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import CloseIcon from "@mui/icons-material/Close";
+import { Sun, Moon } from "lucide-react";
 
-export const Navbar = () => {
+type TabType = "home" | "experience" | "education" | "projects";
+
+interface NavbarProps {
+  activeTab: TabType;
+  setActiveTab: (tab: TabType) => void;
+}
+
+export const Navbar = ({ activeTab, setActiveTab }: NavbarProps) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [theme, setTheme] = useState<"light" | "dark">("light");
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme");
+    const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    
+    if (savedTheme === "dark" || (!savedTheme && systemPrefersDark)) {
+      setTheme("dark");
+      document.documentElement.classList.add("dark");
+    } else {
+      setTheme("light");
+      document.documentElement.classList.remove("dark");
+    }
+  }, []);
+
+  const changeTheme = () => {
+    if (theme === "light") {
+      setTheme("dark");
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+    } else {
+      setTheme("light");
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+    }
+  };
 
   const toggleDrawer =
     (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
@@ -20,38 +54,19 @@ export const Navbar = () => {
       setDrawerOpen(open);
     };
 
-  const changeTheme = () => {
-    const lightButton = document.querySelector(".light-button");
-    const darkButton = document.querySelector(".dark-button");
-    if (lightButton && darkButton) {
-      lightButton.classList.toggle("inactive");
-      darkButton.classList.toggle("inactive");
-    }
-    document.documentElement.classList.toggle("dark");
-    const allElements = document.querySelectorAll("*");
-
-    allElements.forEach((el) => {
-      el.classList.toggle("dark");
-    });
-  };
-
-  const toggleHome = () => {
-    const topContainer = document.querySelector(".top-container");
-    topContainer?.scrollIntoView({
+  const handleTabClick = (tab: TabType) => {
+    setActiveTab(tab);
+    window.scrollTo({
+      top: 0,
       behavior: "smooth",
-      block: "start",
-      inline: "nearest",
     });
     setDrawerOpen(false);
   };
-  const toggleProjects = () => {
-    const projectsSection = document.querySelector(".projects-pagefull");
-    projectsSection?.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-      inline: "nearest",
-    });
-    setDrawerOpen(false);
+
+  const getTabClass = (tab: TabType) => {
+    return activeTab === tab
+      ? "!text-neutral-900 dark:!text-white !font-semibold !px-1.5 !min-w-0 relative after:absolute after:bottom-0 after:left-1.5 after:right-1.5 after:h-[2px] after:bg-neutral-900 dark:after:bg-white !rounded-none"
+      : "!text-neutral-500 dark:!text-neutral-400 hover:!text-neutral-900 dark:hover:!text-white !font-medium transition-colors !px-1.5 !min-w-0 !rounded-none";
   };
 
   const DrawerList = (
@@ -61,84 +76,75 @@ export const Navbar = () => {
       onClick={toggleDrawer(false)}
       onKeyDown={toggleDrawer(false)}
     >
-      <div className="close-button w-full flex justify-end items-end ">
-        <Button size="small">
-          <CloseIcon
-            sx={{
-              fill: "white",
-            }}
-          />
+      <div className="close-button w-full flex justify-end items-end p-2">
+        <Button size="small" onClick={toggleDrawer(false)}>
+          <CloseIcon className="text-neutral-900 dark:text-neutral-100" />
         </Button>
       </div>
 
-      <div className="in-box flex justify-start items-start flex-col p-5 gap-5">
-        <Button
-          className="!text-xl !font-bold !text-gray-50"
-          onClick={toggleHome}
-        >
-          HOME
-        </Button>
-        <Button
-          className="!text-xl !font-bold !text-gray-50"
-          onClick={toggleProjects}
-        >
-          PROJECTS
-        </Button>
-        <Divider />
+      <div className="in-box flex justify-start items-start flex-col p-5 gap-4">
+        {(["home", "experience", "education", "projects"] as TabType[]).map((tab) => (
+          <Button
+            key={tab}
+            className={`!text-base !font-medium !w-full !justify-start ${
+              activeTab === tab
+                ? "!text-neutral-900 dark:!text-white !font-bold"
+                : "!text-neutral-500 dark:!text-neutral-450"
+            }`}
+            onClick={() => handleTabClick(tab)}
+          >
+            {tab.toUpperCase()}
+          </Button>
+        ))}
+        <Divider className="w-full !border-neutral-200 dark:!border-neutral-850 !mt-2" />
       </div>
     </Box>
   );
 
   return (
-    <nav className="dark:bg-[#1a1a1a] bg-[#9394a5] text-2xl font-bold text-[#160718] p-4 w-full shadow-md fixed top-0 left-0 z-50 flex items-center justify-between">
-      <div className="theme-container rounded-full !w-8 !h-8 ">
-        <Button
-          className="theme-switcher !rounded-full flex items-center justify-center relative !dark:bg-gray-900 !w-8 !h-8 !min-w-0"
-          onClick={changeTheme}
-          sx={{
-            color: "white",
+    <nav className="w-full py-4 px-6 md:px-12 fixed top-0 left-0 z-50 flex items-center justify-between border-b border-neutral-200/50 dark:border-neutral-800/50 backdrop-blur-md bg-white/70 dark:bg-neutral-950/70 transition-all duration-300">
+      <div className="flex items-center gap-2">
+        <a
+          href="#"
+          onClick={(e) => {
+            e.preventDefault();
+            handleTabClick("home");
           }}
+          className="text-lg font-bold tracking-tight text-neutral-900 dark:text-white hover:opacity-85 transition-opacity"
         >
-          <svg
-            className="light-button"
-            xmlns="http://www.w3.org/2000/svg"
-            height="1rem"
-            viewBox="0 -960 960 960"
-            width="1rem"
-          >
-            <path d="M480-280q-83 0-141.5-58.5T280-480q0-83 58.5-141.5T480-680q83 0 141.5 58.5T680-480q0 83-58.5 141.5T480-280ZM200-440H40v-80h160v80Zm720 0H760v-80h160v80ZM440-760v-160h80v160h-80Zm0 720v-160h80v160h-80ZM256-650l-101-97 57-59 96 100-52 56Zm492 496-97-101 53-55 101 97-57 59Zm-98-550 97-101 59 57-100 96-56-52ZM154-212l101-97 55 53-97 101-59-57Z" />
-          </svg>
-          <svg
-            className="dark-button inactive"
-            xmlns="http://www.w3.org/2000/svg"
-            height="1rem"
-            viewBox="0 -960 960 960"
-            width="1rem"
-          >
-            <path d="M480-120q-150 0-255-105T120-480q0-150 105-255t255-105q14 0 27.5 1t26.5 3q-41 29-65.5 75.5T444-660q0 90 63 153t153 63q55 0 101-24.5t75-65.5q2 13 3 26.5t1 27.5q0 150-105 255T480-120Z" />
-          </svg>
-        </Button>
+          ABIJITH M A
+        </a>
       </div>
 
-      <div className="pages hidden md:flex justify-center items-center">
-        <Button
-          onClick={toggleHome}
-          className="!hover:bg-red-50 hover:scale-105 !text-white transition duration-300 ease-in-out !hover:text-[#e47ef4]"
-        >
-          HOME
-        </Button>
-        <Button
-          onClick={toggleProjects}
-          className="!hover:bg-red-50 hover:scale-105 !text-white transition duration-300 ease-in-out "
-        >
-          PROJECTS
-        </Button>
-      </div>
+      <div className="flex items-center gap-6">
+        <div className="pages hidden md:flex justify-center items-center gap-4">
+          <Button onClick={() => handleTabClick("home")} className={getTabClass("home")}>
+            Home
+          </Button>
+          <Button onClick={() => handleTabClick("experience")} className={getTabClass("experience")}>
+            Experience
+          </Button>
+          <Button onClick={() => handleTabClick("education")} className={getTabClass("education")}>
+            Education
+          </Button>
+          <Button onClick={() => handleTabClick("projects")} className={getTabClass("projects")}>
+            Projects
+          </Button>
+        </div>
 
-      <div className="menu-icon md:hidden">
-        <Button className="flex" onClick={toggleDrawer(true)} color="primary">
-          <MenuIcon sx={{ color: "white" }} />
-        </Button>
+        <button
+          onClick={changeTheme}
+          aria-label="Toggle theme"
+          className="p-2 rounded-full border border-neutral-250 dark:border-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-colors flex items-center justify-center cursor-pointer"
+        >
+          {theme === "light" ? <Moon size={18} /> : <Sun size={18} />}
+        </button>
+
+        <div className="menu-icon md:hidden">
+          <Button className="flex !p-1 !min-w-0" onClick={toggleDrawer(true)}>
+            <MenuIcon className="text-neutral-800 dark:text-neutral-200" />
+          </Button>
+        </div>
       </div>
 
       <Drawer
@@ -147,11 +153,7 @@ export const Navbar = () => {
         onClose={toggleDrawer(false)}
         slotProps={{
           paper: {
-            sx: {
-              color: "#ffffff", // Tailwind's text-white
-            },
-            className:
-              "custom-drawer flex flex-col items-center justify-start !bg-gradient-to-br from-gray-800 to-gray-950 text-white h-full py-10", // optional: if you're applying Tailwind or global styles
+            className: "w-[250px] !bg-neutral-50 dark:!bg-neutral-900 text-neutral-900 dark:text-white border-l border-neutral-200 dark:border-neutral-850",
           },
         }}
       >

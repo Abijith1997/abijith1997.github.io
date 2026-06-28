@@ -4,90 +4,76 @@ import { GraduationCap } from "lucide-react";
 export const Education = () => {
   return (
     <motion.div
-      className="sm:p-4  flex flex-col items-center justify-start text-white w-full rounded-md"
-      initial={{ opacity: 0, y: 50 }}
+      className="w-full h-full flex flex-col justify-start"
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
-      viewport={{ once: true, amount: 0.3 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      viewport={{ once: true, amount: 0.1 }}
     >
-      <div className="rounded-md  py-2 px-2 md:p-6 md:px-8 z-20 relative min-h-full  flex flex-col gap-5 w-full">
-        <div className="bg-gradient-to-r from-gray-700 to-gray-800 py-2 border-blue-400 border-b-2 flex items-center justify-start gap-2 md:px-5 px-2">
-          <GraduationCap size={"30px"} />
-          <h2 className="text-2xl font-bold text-white px-8">Education</h2>
+      <div className="h-full flex flex-col border border-neutral-200/65 dark:border-neutral-800/65 bg-neutral-50/40 dark:bg-neutral-900/10 rounded-xl p-6 md:p-8">
+        <div className="pb-3 border-b border-neutral-200 dark:border-neutral-800 flex items-center gap-3 mb-6">
+          <GraduationCap size={22} className="text-neutral-800 dark:text-neutral-200" />
+          <h2 className="text-lg font-bold tracking-tight text-neutral-900 dark:text-white uppercase">
+            Education
+          </h2>
         </div>
 
-        {/* Masters degree section */}
-        <div className="education-inner bg-gray-500 dark:bg-gray-900 rounded-md relative flex flex-col px-4 gap-1 sm:gap-5  lg:pt-5 items-center justify-center h-full w-full">
-          <div className="Masters  rounded-md mb-8  px-6 py-5">
-            <h2 className="text-sm lg:text-2xl font-semibold text-blue-300">
-              MSc. Data Analytics
-            </h2>
-            <h3 className="text-sm lg:text-lg font-medium text-gray-400 mb-3">
-              Berlin School of Business and Innovation
-            </h3>
-            <p className="text-xs text-gray-300 leading-relaxed md:text-sm">
-              The Master's in Data Analytics provided a rigorous foundation in
-              data science, combining theoretical knowledge with practical
-              application across key areas such as statistical modeling, machine
-              learning, data management, and visualization. The program
-              emphasized real-world problem-solving through projects that
-              involved analyzing large and complex datasets, developing
-              predictive models, and transforming raw data into actionable
-              insights. Through collaborative coursework and research-driven
-              assignments, the curriculum fostered critical thinking, analytical
-              reasoning, and the ability to communicate data-driven findings
-              effectively to both technical and non-technical stakeholders.
-            </p>
-            <p className="text-sm md:text-lg items-center justify-start flex flex-wrap gap-0.5 text-gray-300 font-medium italic mt-4 tracking-wide bg-gray-800/50 py-3 px-4 rounded-md lg:rounded-[0 6px 6px 0] lg:border-l-4 lg:border-blue-500">
-              Key tools and technologies used:
-              <span className="text-xs text-blue-300 font-semibold bg-gray-900/60 px-2 py-1 rounded-md mx-1 inline-block">
-                TensorFlow
-              </span>
-              <span className="text-xs text-blue-300 font-semibold bg-gray-900/60 px-2 py-1 rounded-md mx-1 inline-block">
-                RStudio
-              </span>
-              <span className="text-xs text-blue-300 font-semibold bg-gray-900/60 px-2 py-1 rounded-md mx-1 inline-block">
-                MySQL
-              </span>
-              <span className="text-xs text-blue-300 font-semibold bg-gray-900/60 px-2 py-1 rounded-md mx-1 inline-block">
-                Tableau
-              </span>
-            </p>
+        <div className="space-y-8 flex-1 flex flex-col justify-between">
+          {/* Masters degree */}
+          <div className="flex flex-col gap-2">
+            <div className="flex flex-col">
+              <h3 className="text-sm font-semibold text-neutral-900 dark:text-white">
+                MSc. Data Analytics
+              </h3>
+              <div className="flex justify-between items-baseline text-xs text-neutral-400 font-mono mt-0.5">
+                <span>Berlin School of Business & Innovation (BSBI)</span>
+                <span>Oct 2022 – Jan 2025</span>
+              </div>
+            </div>
+            <ul className="text-xs md:text-sm text-neutral-500 dark:text-neutral-400 leading-relaxed list-disc list-outside ml-4 space-y-1 mt-1">
+              <li>Machine Learning with Python and regression/statistical analysis in RStudio.</li>
+              <li>Used LLMs to design deep learning image recognition models with TensorFlow.</li>
+              <li>Engineered data pipelines, database schemas, and queries using MySQL.</li>
+              <li>Familiarized with Apache Spark big data tools and interactive visualizations in Tableau.</li>
+            </ul>
+            <div className="flex flex-wrap gap-2 mt-2">
+              {["Python", "TensorFlow", "RStudio", "MySQL", "Apache Spark", "Tableau"].map((tool) => (
+                <span
+                  key={tool}
+                  className="px-2 py-0.5 border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900/60 rounded text-[10px] font-mono text-neutral-600 dark:text-neutral-400"
+                >
+                  {tool}
+                </span>
+              ))}
+            </div>
           </div>
 
-          {/* Bachelors degree section */}
-          <div className="Bachelors rounded-md mb-8  px-6 py-5">
-            <h2 className="text-sm lg:text-2xl font-semibold text-blue-300">
-              B. Tech Electronics and Communication Engineering
-            </h2>
-            <h3 className="text-sm lg:text-lg font-medium text-gray-400 mb-3">
-              National Institute of Technology, Calicut
-            </h3>
-            <p className="md:text-gray-300 leading-relaxed text-xs md:text-sm">
-              Completed a Bachelor's degree in Electronics and Communication
-              Engineering with a strong academic foundation in electronic
-              circuits, signal processing, and communication systems. The
-              program emphasized both theoretical concepts and practical
-              applications across core engineering domains. The academic journey
-              culminated in a thesis project focused on the TCAD simulation of a
-              Schottky diode, enabling in-depth exploration of semiconductor
-              device behavior through advanced simulation techniques and tools.
-            </p>
-            <p className="text-sm md:text-md items-center justify-start flex flex-wrap gap-0.5 text-gray-300 font-medium italic mt-4 tracking-wide bg-gray-800/50 py-3 px-4 rounded-md lg:rounded-[0 6px 6px 0] lg:border-l-4 lg:border-blue-500">
-              Key skills and tools:
-              <span className="text-xs text-blue-300 font-semibold bg-gray-900/60 px-2 py-1 rounded-md mx-1 inline-block">
-                Electronic circuit design
-              </span>
-              <span className="text-xs text-blue-300 font-semibold bg-gray-900/60 px-2 py-1 rounded-md mx-1 inline-block">
-                Signal analysis
-              </span>
-              <span className="text-xs text-blue-300 font-semibold bg-gray-900/60 px-2 py-1 rounded-md mx-1 inline-block">
-                Communication systems
-              </span>
-              <span className="text-xs text-blue-300 font-semibold bg-gray-900/60 px-2 py-1 rounded-md mx-1 inline-block">
-                TCAD simulation
-              </span>
-            </p>
+          {/* Bachelors degree */}
+          <div className="flex flex-col gap-2 pt-4 border-t border-neutral-200/50 dark:border-neutral-800/50">
+            <div className="flex flex-col">
+              <h3 className="text-sm font-semibold text-neutral-900 dark:text-white">
+                B.Tech Electronics & Communication Engineering
+              </h3>
+              <div className="flex justify-between items-baseline text-xs text-neutral-400 font-mono mt-0.5">
+                <span>National Institute of Technology Calicut</span>
+                <span>Jul 2015 – May 2019</span>
+              </div>
+            </div>
+            <ul className="text-xs md:text-sm text-neutral-500 dark:text-neutral-400 leading-relaxed list-disc list-outside ml-4 space-y-1 mt-1">
+              <li>Core engineering principles: semiconductor device physics, signals, and embedded systems.</li>
+              <li>Completed device physics modeling and simulation of Schottky diodes using TCAD.</li>
+              <li>Acquired hands-on lab experience with microcontrollers, microprocessors, and communication protocols.</li>
+            </ul>
+            <div className="flex flex-wrap gap-2 mt-2">
+              {["Circuit design", "Signal analysis", "Embedded systems", "TCAD"].map((skill) => (
+                <span
+                  key={skill}
+                  className="px-2 py-0.5 border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900/60 rounded text-[10px] font-mono text-neutral-600 dark:text-neutral-400"
+                >
+                  {skill}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
       </div>

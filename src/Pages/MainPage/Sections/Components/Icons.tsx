@@ -1,115 +1,87 @@
 import {
-  IconBrandGithub,
-  IconBrandJavascript,
-  IconBrandPython,
   IconBrandReact,
-  IconBrandRedux,
-  IconBrandTailwind,
   IconBrandTypescript,
+  IconBrandJavascript,
+  IconBrandTailwind,
+  IconBrandRedux,
+  IconBrandNodejs,
+  IconBrandAws,
+  IconBrandDocker,
   IconDatabase,
-  IconFileSpreadsheet,
   IconHtml,
-  IconSql,
+  IconTestPipe,
+  IconCpu,
+  IconTrendingUp,
 } from "@tabler/icons-react";
 import { CSSSVG, MLSVG, PowerBISVG } from "../../../../SVG/SVGs";
-import { useEffect, useState } from "react";
 
 export const Icons = () => {
-  const [size, setSize] = useState<string>("20px");
-
-  useEffect(() => {
-    const handleResize = () => {
-      const windowWidth = window.innerWidth;
-      if (windowWidth < 640) {
-        setSize("12px");
-      } else if (windowWidth < 768) {
-        setSize("14px");
-      } else if (windowWidth < 1024) {
-        setSize("16px");
-      } else if (windowWidth < 1280) {
-        setSize("18px");
-      } else {
-        setSize("20px");
-      }
-    };
-    handleResize(); // Set initial height
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+  const categories = [
+    {
+      title: "Frontend Development",
+      skills: [
+        { name: "React.js", icon: <IconBrandReact size={14} /> },
+        { name: "TypeScript", icon: <IconBrandTypescript size={14} /> },
+        { name: "JavaScript", icon: <IconBrandJavascript size={14} /> },
+        { name: "Tailwind CSS", icon: <IconBrandTailwind size={14} /> },
+        { name: "CSS", icon: <CSSSVG size="14px" /> },
+        { name: "HTML", icon: <IconHtml size={14} /> },
+        { name: "Redux", icon: <IconBrandRedux size={14} /> },
+      ],
+    },
+    {
+      title: "Backend & Cloud",
+      skills: [
+        { name: "Node.js", icon: <IconBrandNodejs size={14} /> },
+        { name: "Express.js", icon: <IconDatabase size={14} /> },
+        { name: "AWS", icon: <IconBrandAws size={14} /> },
+        { name: "PostgreSQL & SQL", icon: <IconDatabase size={14} /> },
+        { name: "Docker", icon: <IconBrandDocker size={14} /> },
+        { name: "Jest", icon: <IconTestPipe size={14} /> },
+      ],
+    },
+    {
+      title: "Data & Systems",
+      skills: [
+        { name: "Scala", icon: <IconTrendingUp size={14} /> },
+        { name: "R & RStudio", icon: <IconTrendingUp size={14} /> },
+        { name: "Machine Learning", icon: <MLSVG size="14px" /> },
+        { name: "Tableau", icon: <IconTrendingUp size={14} /> },
+        { name: "Power BI", icon: <PowerBISVG size="14px" /> },
+        { name: "ROS & Embedded", icon: <IconCpu size={14} /> },
+      ],
+    },
+  ];
 
   return (
-    <>
-      <div className="all-skills flex flex-col gap-1 py-1 sm:p-5 justify-start items-center">
-        <div className="flex w-full items-center justify-center ">
-          <h2 className="text-xl font-bold text-gray-800 dark:text-white underline underline-offset-4 decoration-[#1b5faa] mb-1">
-            Key Skills
-          </h2>
-        </div>
-        <div className="all-skills flex flex-wrap gap-2 sm:gap-3 space-y-1 sm:justify-center sm:items-center justify-start items-startsm:text-sm text-xs text-white *:bg-gray-800">
-          <div className="bg-gray-800 react skill-pill flex items-center justify-center gap-1 sm:gap-2 border-2 px-2 py-1 sm:px-3 sm:py-2 rounded-md border-[#1b5faa]  cursor-pointer hover:bg-[#191a1b] transition-all duration-300">
-            <IconBrandReact size={size} color="#1b5faa" />
-            <p>React</p>
-          </div>
-          <div className="skill-pill flex items-center justify-center gap-2 border-2 px-2 py-1 sm:px-3 sm:py-2 rounded-md border-[#1D6F42]  cursor-pointer hover:bg-[#191a1b] transition-all duration-300">
-            <IconFileSpreadsheet color="#1D6F42" size={size} />
-            <p>Spreadsheets</p>
-          </div>
-          <div className="skill-pill flex  items-center justify-center gap-2 border-2 px-2 py-1 sm:px-3 sm:py-2 rounded-md border-[#e34c26]  cursor-pointer hover:bg-[#191a1b] transition-all duration-300">
-            <IconHtml size={size} color="#e34c26" />
-            <p>HTML</p>
-          </div>
-          <div className="skill-pill flex  items-center justify-center gap-2 border-2 px-2 py-1 sm:px-3 sm:py-2 rounded-md border-[#f0db4f]  cursor-pointer hover:bg-[#191a1b] transition-all duration-300">
-            <IconBrandJavascript size={size} color="#f0db4f" />
-            <p>JavaScript</p>
-          </div>
-          <div className="skill-pill flex  items-center justify-center gap-2 border-2 px-2 py-1 sm:px-3 sm:py-2 rounded-md border-[#007acc]  cursor-pointer hover:bg-[#191a1b] transition-all duration-300">
-            <IconBrandTypescript size={size} color="#007acc" />
-            <p>TypeScript</p>
-          </div>
-          <div className="skill-pill flex  items-center justify-center gap-2 border-2 px-2 py-1 sm:px-3 sm:py-2 rounded-md border-[#264de4]  cursor-pointer hover:bg-[#191a1b] transition-all duration-300">
-            <CSSSVG size={size} />
-            <p>CSS</p>
-          </div>
-          <div className="skill-pill flex  items-center justify-center gap-2 border-2 px-2 py-1 sm:px-3 sm:py-2 rounded-md border-[#A5F3FC]  cursor-pointer hover:bg-[#191a1b] transition-all duration-300">
-            <IconBrandTailwind size={size} color="#A5F3FC" />
-            <p>Tailwind CSS</p>
-          </div>
-          <div className="skill-pill flex  items-center justify-center gap-2 border-2 px-2 py-1 sm:px-3 sm:py-2 rounded-md border-[#FFD43B]  cursor-pointer hover:bg-[#191a1b] transition-all duration-300">
-            <IconBrandPython size={size} color="#FFD43B" />
-            <p>Python</p>
-          </div>
-          <div className="skill-pill flex  items-center justify-center gap-2 border-2 px-2 py-1 sm:px-3 sm:py-2 rounded-md border-[#333333]  cursor-pointer hover:bg-[#191a1b] transition-all duration-300">
-            <IconBrandGithub size={size} color="#f2f2f2" />
-            <p>GitHub</p>
-          </div>
-          <div className="skill-pill flex items-center justify-center gap-2 border-2 px-2 py-1 sm:px-3 sm:py-2 rounded-md border-[#FFC107]  cursor-pointer hover:bg-[#191a1b] transition-all duration-300">
-            <PowerBISVG size={size} />
-            <p>Power BI</p>
-          </div>
-          <div className="skill-pill ML flex items-center justify-center gap-2 border-0 px-0.5 py-0.5 rounded-md">
-            <div className="ML-inner text-white flex items-center justify-center gap-2 rounded-md sm:px-3 sm:py-2 bg-gray-800 hover:bg-[#191a1b] transition-all duration-300 cursor-pointer px-2 py-1">
-              <MLSVG size={size} />
-              <p>Machine Learning</p>
+    <div className="w-full flex flex-col gap-6">
+      <div className="flex w-full items-center justify-start border-b border-neutral-200 dark:border-neutral-800 pb-2">
+        <h3 className="text-sm font-bold tracking-wider text-neutral-800 dark:text-neutral-200 uppercase">
+          Key Skill Domains
+        </h3>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {categories.map((cat, idx) => (
+          <div key={idx} className="flex flex-col gap-3">
+            <h4 className="text-[10px] font-bold text-neutral-400 uppercase tracking-widest border-b border-neutral-100 dark:border-neutral-850 pb-1">
+              {cat.title}
+            </h4>
+            <div className="flex flex-wrap gap-1.5">
+              {cat.skills.map((skill, sIdx) => (
+                <div
+                  key={sIdx}
+                  className="flex items-center gap-1.5 border border-neutral-200 dark:border-neutral-850 bg-white dark:bg-neutral-900/30 px-2 py-1 rounded text-[11px] font-medium text-neutral-700 dark:text-neutral-300 hover:border-neutral-400 dark:hover:border-neutral-700 hover:text-neutral-900 dark:hover:text-white transition-all duration-300 cursor-default"
+                >
+                  <span className="opacity-75 flex items-center justify-center">
+                    {skill.icon}
+                  </span>
+                  <span className="font-mono">{skill.name}</span>
+                </div>
+              ))}
             </div>
           </div>
-
-          <div className="skill-pill flex  items-center justify-center gap-2 border-2 px-2 py-1 sm:px-3 sm:py-2 rounded-md border-[#00758F]  cursor-pointer hover:bg-[#191a1b] transition-all duration-300">
-            <IconSql size={size} color="#00758F" />
-            <p>SQL</p>
-          </div>
-          <div className="skill-pill flex  items-center justify-center gap-2 border-2 px-2 py-1 sm:px-3 sm:py-2 rounded-md border-[#CC3534] cursor-pointer hover:bg-[#191a1b] transition-all duration-300">
-            <IconDatabase size={size} color="#CC3534" />
-            <p>Database</p>
-          </div>
-          <div className="redux skill-pill flex  items-center justify-center gap-2 border-2 px-2 py-1 sm:px-3 sm:py-2 rounded-md border-[#764abc] cursor-pointer hover:bg-[#191a1b] transition-all duration-300">
-            <IconBrandRedux size={size} color="#764abc" />
-            <p>Redux</p>
-          </div>
-        </div>
+        ))}
       </div>
-    </>
+    </div>
   );
 };

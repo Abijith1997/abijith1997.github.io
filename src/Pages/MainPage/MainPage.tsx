@@ -1,18 +1,18 @@
-import { Connect } from "./Sections/Connect";
 import { About } from "./Sections/About";
 import { Landing } from "./Sections/LandingSection";
-import { Projects } from "../Projects/Projects";
 
-export const MainPage = () => {
+type TabType = "home" | "experience" | "education" | "projects";
+
+interface MainPageProps {
+  activeTab: TabType;
+  setActiveTab: (tab: TabType) => void;
+}
+
+export const MainPage = ({ activeTab, setActiveTab }: MainPageProps) => {
   return (
-    <>
-      <div className="landing-main relative flex flex-col items-center justify-center ">
-        <div className="landing blur-md blur-background"></div>
-        <Landing />
-        <About />
-        <Projects />
-        <Connect />
-      </div>
-    </>
+    <div className="w-full flex flex-col items-center justify-start bg-transparent">
+      {activeTab === "home" && <Landing />}
+      <About activeTab={activeTab} setActiveTab={setActiveTab} />
+    </div>
   );
 };

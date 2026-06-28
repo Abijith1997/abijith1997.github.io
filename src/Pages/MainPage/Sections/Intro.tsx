@@ -1,6 +1,6 @@
 import { Button } from "@mui/material";
 import { IconDownload } from "@tabler/icons-react";
-import { BarChart, Code, Zap } from "lucide-react";
+import { Server, Code, BarChart } from "lucide-react";
 import resume from "../../../assets/Resume.pdf";
 
 export const ProfessionalBio = () => {
@@ -9,83 +9,83 @@ export const ProfessionalBio = () => {
   };
 
   return (
-    <div className="max-w-full mx-auto  shadow-lg rounded-lg overflow-hidden p-5 h-full">
-      <div className="bg-gradient-to-r from-gray-700 to-gray-800 py-6 px-8">
-        <h2 className="text-2xl font-bold text-white">Professional Profile</h2>
+    <div className="max-w-full mx-auto overflow-hidden h-full flex flex-col justify-start">
+      <div className="py-4 border-b border-neutral-200 dark:border-neutral-800">
+        <h2 className="text-xl font-bold tracking-tight text-neutral-900 dark:text-white uppercase">
+          Professional Profile
+        </h2>
       </div>
 
-      <div className="p-8 h-full  flex flex-col justify-start items-start">
-        <div className="flex flex-col justify-start items-between h-full gap-10">
+      <div className="py-6 flex flex-col justify-start items-start gap-8">
+        <div className="flex flex-col justify-start items-between h-full gap-8">
           {/* Bio Introduction */}
-          <div className="dark:text-gray-300 text-sm leading-relaxed space-y-4">
-            <p className="border-l-4 border-blue-500 pl-4 italic font-medium">
-              Data Analyst & Senior Frontend Developer
+          <div className="text-neutral-600 dark:text-neutral-400 text-sm leading-relaxed space-y-4">
+            <p className="border-l-2 border-neutral-900 dark:border-white pl-4 italic font-medium text-neutral-900 dark:text-neutral-200">
+              Full-Stack Developer & Cloud Architect
             </p>
 
             <p>
-              I'm a Data Analyst and Senior Frontend Developer who loves digging
-              into data and turning it into meaningful insights, while also
-              creating user-friendly, visually engaging web applications. My
-              experience in data analysis helps me uncover trends and patterns
-              that can drive better business decisions.
+              I am a Full-Stack Developer and Cloud Architect with over 4 years of experience building 
+              scalable, user-centric web applications and designing robust cloud systems. I possess a 
+              strong foundation in modern frontend architecture, backend service development, and 
+              complex event-driven system design.
             </p>
 
             <p>
-              On the frontend side, I enjoy building responsive, clean, and
-              intuitive interfaces using the latest web technologies. Whether
-              it's crafting seamless user experiences or optimizing performance,
-              I'm always focused on delivering solutions that look great and
-              work even better.
+              My hands-on experience includes designing and deploying serverless services on AWS (Lambda, 
+              SQS, S3, EC2), implementing handler-based system architectures, and optimizing relational 
+              database schemas (PostgreSQL, MySQL, Supabase). I focus on writing reliable, maintainable code 
+              using TypeScript, React, Node.js, and validation frameworks like Zod.
             </p>
 
             <p>
-              I'm constantly learning, exploring new trends, and staying updated
-              with the latest innovations to keep pushing the boundaries of
-              what's possible in both data and web development.
+              Holding a Master’s degree in Data Analytics and a Bachelor’s in Electronics & Communication 
+              Engineering, I merge core engineering logic, data pipelines, and a product mindset. I am passionate 
+              about owning features end-to-end, solving real-world architecture challenges, and collaborating 
+              with cross-functional teams to build impactful products.
             </p>
           </div>
 
-          {/* Skills */}
-          <div className="grid grid-cols-1 xl:grid-cols-3 gap-4 mt-6">
-            <div className="bg-blue-50 p-4 rounded-lg flex flex-col items-center text-center">
-              <BarChart className="text-blue-600 mb-2" size={32} />
-              <h3 className="font-semibold text-lg text-blue-800 mb-2">
-                Data Analysis
+          {/* Skills / Focus areas */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+            <div className="bg-neutral-100 dark:bg-neutral-900/50 border border-neutral-200/60 dark:border-neutral-800/60 p-5 rounded-lg flex flex-col items-start">
+              <Code className="text-neutral-900 dark:text-neutral-100 mb-3" size={24} />
+              <h3 className="font-semibold text-sm text-neutral-900 dark:text-white mb-2">
+                Full-Stack Dev
               </h3>
-              <p className="text-gray-600 text-sm">
-                Uncovering insights and patterns to drive informed decisions
+              <p className="text-neutral-500 dark:text-neutral-400 text-xs leading-relaxed">
+                Building responsive UIs and robust RESTful APIs using React, TypeScript, Node.js, and Express.
               </p>
             </div>
 
-            <div className="bg-indigo-50 p-4 rounded-lg flex flex-col items-center text-center">
-              <Code className="text-indigo-600 mb-2" size={32} />
-              <h3 className="font-semibold text-lg text-indigo-800 mb-2">
-                Frontend Development
+            <div className="bg-neutral-100 dark:bg-neutral-900/50 border border-neutral-200/60 dark:border-neutral-800/60 p-5 rounded-lg flex flex-col items-start">
+              <Server className="text-neutral-900 dark:text-neutral-100 mb-3" size={24} />
+              <h3 className="font-semibold text-sm text-neutral-900 dark:text-white mb-2">
+                Cloud & Architecture
               </h3>
-              <p className="text-gray-600 text-sm">
-                Building intuitive and responsive web applications
+              <p className="text-neutral-500 dark:text-neutral-400 text-xs leading-relaxed">
+                Designing event-driven serverless architectures, SQS queue integrations, and AWS deployments.
               </p>
             </div>
 
-            <div className="bg-purple-50 p-4 rounded-lg flex flex-col items-center text-center">
-              <Zap className="text-purple-600 mb-2" size={32} />
-              <h3 className="font-semibold text-lg text-purple-800 mb-2">
-                Continuous Learning
+            <div className="bg-neutral-100 dark:bg-neutral-900/50 border border-neutral-200/60 dark:border-neutral-800/60 p-5 rounded-lg flex flex-col items-start">
+              <BarChart className="text-neutral-900 dark:text-neutral-100 mb-3" size={24} />
+              <h3 className="font-semibold text-sm text-neutral-900 dark:text-white mb-2">
+                Data Analytics
               </h3>
-              <p className="text-gray-600 text-sm">
-                Staying updated with the latest technologies and innovations
+              <p className="text-neutral-500 dark:text-neutral-400 text-xs leading-relaxed">
+                Developing data pipelines, managing databases (PostgreSQL/SQL), and creating Power BI reports.
               </p>
             </div>
           </div>
-          <div className="resume-button items-end flex justify-end ml-auto pr-1.5">
+          
+          <div className="resume-button pt-4">
             <Button
-              className="!text-white flex items-center gap-2 !font-bold  transition-all duration-300"
-              variant="contained"
-              color="primary"
+              className="!bg-neutral-900 hover:!bg-neutral-800 dark:!bg-neutral-100 dark:hover:!bg-neutral-200 !text-white dark:!text-neutral-900 !rounded-md !px-5 !py-2.5 !font-medium !text-sm !shadow-none flex items-center gap-2 transition-all duration-300"
               onClick={downloadResume}
             >
-              <IconDownload size={20} />
-              <p>Download Resume</p>
+              <IconDownload size={18} />
+              <span>Download Resume</span>
             </Button>
           </div>
         </div>
